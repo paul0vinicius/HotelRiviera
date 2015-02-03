@@ -55,7 +55,7 @@ public class ListaQuartosHotel {
 	}
 	
 	public ArrayList<Quarto> getQuartosDisponiveis (Quarto quarto) throws Exception {
-		if (quarto == null) throw new ObjetoInvalidoException("Parâmetro de entrada incorreto.");
+		if (quarto == null) throw new ObjetoInvalidoException("Parametro de entrada incorreto.");
 		String tipoQuarto = checaTipoQuarto(quarto);
 		atualizaQuartosDisponiveis();
 		

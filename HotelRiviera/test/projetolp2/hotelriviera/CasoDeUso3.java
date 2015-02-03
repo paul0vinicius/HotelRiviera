@@ -93,9 +93,15 @@ public class CasoDeUso3 {
 
 		try {
 			quartoDeTestes = presidencial;
-			new Contrato(hospede1,null,16,quartoDeTestes);
-		} catch (ObjetoInvalidoException e) {
-			Assert.assertEquals("O objeto passado eh nulo. ", e.getMessage());
+			new Contrato(hospede1,"",16,quartoDeTestes);
+		} catch (StringVaziaException e) {
+			Assert.assertEquals("O numero do cartao passado eh invalido.", e.getMessage());
+		}
+		try {
+			quartoDeTestes = luxoTriplo;
+			new Contrato(hospede2, "5555555 7 5", -8, quartoDeTestes);
+		} catch (NumeroNegativoException e){
+			Assert.assertEquals("O numero de dias nao pode ser negativo.",e.getMessage());
 		}
 	}
 	

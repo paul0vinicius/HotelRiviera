@@ -14,10 +14,10 @@ public class Contrato {
 			throw new ObjetoInvalidoException("O objeto passado eh nulo. ");
 		}
 		if (numeroCartao == "") {
-			throw new StringVaziaException("O numero do cartao passado eh invalido");
+			throw new StringVaziaException("O numero do cartao passado eh invalido.");
 		}
 		if (numeroDias < 1) {
-			throw new NumeroNegativoException("O número de dias não pode ser negativo.");
+			throw new NumeroNegativoException("O numero de dias nao pode ser negativo.");
 		}
 		adicionais = new ArrayList<Adicional>();
 		this.hospede = hospede;
