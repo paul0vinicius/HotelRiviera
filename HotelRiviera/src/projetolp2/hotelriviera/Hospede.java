@@ -11,7 +11,7 @@ public class Hospede {
 	
 	public Hospede (String nome, String endereco, String CPF, String telefoneContato, GregorianCalendar dataNascimento) throws Exception {
 		if (nome == null || endereco == null || CPF == null || telefoneContato == null || dataNascimento == null) {
-			throw new Exception("Os dados fornecidos não podem ser do tipo 'null'");
+			throw new ObjetoInvalidoException("Os dados fornecidos não podem ser do tipo 'null'");
 		}
 		checaExcecoes(nome, endereco, CPF, telefoneContato);
 		nomeHospede = nome;

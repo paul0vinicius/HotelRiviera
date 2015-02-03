@@ -11,13 +11,13 @@ public class Contrato {
 	
 	public Contrato (Hospede hospede, String numeroCartao, int numeroDias, Quarto quarto) throws Exception, NullPointerException, StringVaziaNullException {
 		if (hospede == null || quarto == null) {
-			throw new NullPointerException("As informações sobre o quarto ou hóspede estão incorretas.");
+			throw new ObjetoInvalidoException("O objeto passado eh nulo. ");
 		}
 		if (numeroCartao == "" || numeroCartao == null) {
-			throw new StringVaziaNullException();
+			throw new StringVaziaException("O numero do cartao passado eh invalido");
 		}
 		if (numeroDias < 1) {
-			throw new Exception("O número de dias não pode ser negativo.");
+			throw new NumeroNegativoException("O número de dias não pode ser negativo.");
 		}
 		adicionais = new ArrayList<Adicional>();
 		this.hospede = hospede;

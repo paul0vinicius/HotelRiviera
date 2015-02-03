@@ -85,8 +85,8 @@ public class CasoDeUso3 {
 			quartoDeTestes = luxoSimples;
 			new Contrato(null, "666-666-666-6666", 15, quartoDeTestes);
 			Assert.fail("Deve falhar, o contrato não pode aceitar um hóspede nulo.");
-		} catch (Exception e) {
-			Assert.assertEquals("As informações sobre o quarto ou hóspede estão incorretas.", e.getMessage());
+		} catch (ObjetoInvalidoException e) {
+			Assert.assertEquals("O objeto passado eh nulo. ", e.getMessage());
 		}
 
 		try {
