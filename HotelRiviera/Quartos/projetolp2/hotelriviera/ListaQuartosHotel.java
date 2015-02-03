@@ -1,9 +1,12 @@
 package projetolp2.hotelriviera;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class ListaQuartosHotel {
 	private ArrayList<Quarto> quartosHotel;
+	private final boolean QUARTO_OCUPADO = true;
+	private ArrayList<Quarto> quartosDisponiveis;
 	
 	public ListaQuartosHotel() throws Exception {
 		quartosHotel = new ArrayList<Quarto>();
@@ -46,28 +49,89 @@ public class ListaQuartosHotel {
 		
 	}
 	
-	public ArrayList<Quarto> consultaQuartosDisponiveis () {
-		ArrayList<Quarto> quartosDisponiveis = new ArrayList<Quarto>();
-		for (Quarto a: quartosHotel) {
-			if (a.getQuartoOcupado() == false) {
-				quartosDisponiveis.add(a);
-				System.out.println(a);
+	public ArrayList<Quarto> getQuartosDisponiveis () {
+		atualizaQuartosDisponiveis();
+		return quartosDisponiveis;
+	}
+	
+	public ArrayList<Quarto> getQuartosDisponiveis (Quarto quarto) throws Exception {
+		if (quarto == null) throw new Exception("Parâmetro de entrada incorreto.");
+		String tipoQuarto = checaTipoQuarto(quarto);
+		atualizaQuartosDisponiveis();
+		
+		for (Iterator<Quarto> i = quartosDisponiveis.iterator(); i.hasNext();) {
+			Quarto a = i.next();
+			if (!(a.getTipoQuarto().equals(tipoQuarto) && a.getQuartoOcupado() == false)) {
+				i.remove();
 			}
 		}
 		return quartosDisponiveis;
 	}
+
+	public boolean setQuarto (boolean statusQuarto, int codigoQuarto) {
+		Quarto quarto = getQuarto(codigoQuarto);
+		if (quarto == null) return false;
+		quarto.setQuartoOcupado(statusQuarto);
+		return true;
+	}
 	
-	//public boolean reservaQuarto () {
-		
-	//}
+	public Quarto getQuarto (int codigoQuarto) {
+		for (Quarto a: quartosHotel) {
+			if (a.getCodigoQuarto() == codigoQuarto) return a;
+		}
+		return null;
+	}
 	
-//	public ArrayList<Quarto> consultaQuarto (Quarto quarto) {
-//		if (quarto instanceof Executivo) {
-//			if (quarto instanceof ExecutivoSimples) {
-//				ExecutivoSimples executivoSimples = (ExecutivoSimples) quarto;
-//			}
-//		}
-//		else if (quarto instanceof Executivo)
-//	}
+	public boolean reservaQuarto (int numeroPessoas, int codigoQuarto) throws Exception {
+		for (Quarto a: quartosHotel) {
+			if (codigoQuarto == a.getCodigoQuarto() && a.getQuartoOcupado() == false) {
+				a.setNumeroPessoas(numeroPessoas);
+				a.setQuartoOcupado(QUARTO_OCUPADO);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private void atualizaQuartosDisponiveis () {
+		quartosDisponiveis = new ArrayList<Quarto>();
+		for (Quarto a: quartosHotel) {
+			if (a.getQuartoOcupado() == false) {
+				quartosDisponiveis.add(a);
+			}
+		}
+	}
+	
+	private String checaTipoQuarto (Quarto quarto) {
+		String tipoQuarto = "";
+		if (quarto instanceof Executivo) {
+			if (quarto instanceof ExecutivoSimples) {
+				tipoQuarto = "EXECUTIVO_SIMPLES";
+			}
+			else if (quarto instanceof ExecutivoDuplo) {
+				tipoQuarto = "EXECUTIVO_DUPLO";
+			}
+			else if (quarto instanceof ExecutivoTriplo) {
+				tipoQuarto = "EXECUTIVO_TRIPLO";
+			}
+		}
+		else if (quarto instanceof Luxo) {
+			if (quarto instanceof LuxoSimples) {
+				tipoQuarto = "LUXO_SIMPLES";
+			}
+			else if (quarto instanceof LuxoDuplo) {
+				tipoQuarto = "LUXO_DUPLO";
+			}
+			else if (quarto instanceof LuxoTriplo) {
+				tipoQuarto = "LUXO_TRIPLO";
+			}
+		}
+		else {
+			if (quarto instanceof Presidencial) {
+				tipoQuarto = "PRESIDENCIAL";
+			}
+		}
+		return tipoQuarto;
+	}
 	
 }

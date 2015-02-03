@@ -1,13 +1,16 @@
 package projetolp2.hotelriviera;
 
-public class Quarto implements ServicosHotel {
+public abstract class Quarto implements ServicosHotel {
 	private int numeroPessoas;
 	private double valorDiaria;
 	private boolean quartoOcupado = false;
 	private int codigoQuarto;
+	protected String tipoQuarto;
+	private int limitePessoasQuarto;
 	
 	public Quarto (int numeroDePessoas, int limitePessoasQuarto, double diaria, int codigoQuarto) throws Exception {
 		checaExcecoes(numeroDePessoas, limitePessoasQuarto);
+		this.limitePessoasQuarto = limitePessoasQuarto;
 		this.codigoQuarto = codigoQuarto;
 		this.numeroPessoas = numeroDePessoas;
 		this.valorDiaria = diaria;
@@ -25,7 +28,8 @@ public class Quarto implements ServicosHotel {
 		return numeroPessoas;
 	}
 	
-	public void setNumeroPessoas(int numeroPessoas) {
+	public void setNumeroPessoas(int numeroPessoas) throws Exception {
+		checaExcecoes(numeroPessoas, limitePessoasQuarto);
 		this.numeroPessoas = numeroPessoas;
 	}
 
@@ -33,12 +37,16 @@ public class Quarto implements ServicosHotel {
 		return quartoOcupado;
 	}
 
-	public void getQuartoOcupado(boolean statusQuarto) {
+	public void setQuartoOcupado(boolean statusQuarto) {
 		this.quartoOcupado = statusQuarto;
 	}
 
 	public int getCodigoQuarto() {
 		return codigoQuarto;
+	}
+	
+	public String getTipoQuarto () {
+		return tipoQuarto;
 	}
 
 	private void checaExcecoes (int pessoas, int limitePessoasQuarto) throws Exception {

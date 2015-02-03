@@ -35,6 +35,12 @@ public class CasoDeUso3 {
 	private Quarto quartoDeTestes;
 	private Contrato contrato1;
 	private Contrato contrato2;
+	private Quarto quarto1;
+	private Quarto quarto2;
+	private final boolean NAO_TEM_CAMA_EXTRA = false;
+	private final boolean TEM_CAMA_EXTRA = true;
+	private static ListaQuartosHotel listaQuartos;
+	Quarto luxoSimples, luxoDuplo, luxoTriplo, presidencial, executivoSimples, executivoDuplo, executivoTriplo;
 	
 	@Before
 	public void CriarContratos() throws Exception{
@@ -50,28 +56,39 @@ public class CasoDeUso3 {
 										"(82) 3546-5876",
 										new GregorianCalendar(1990, 02, 28));
 		
-		Quarto quarto1 = new LuxoTriplo(3);
-		Quarto quarto2 = new ExecutivoTriplo(1);
+		listaQuartos = new ListaQuartosHotel();
+		Quarto quarto1 = listaQuartos.getQuarto(11);
+		Quarto quarto2 = listaQuartos.getQuarto(1);
 		
 		contrato1 = new Contrato(hospede1, "2314-4313-3123-1234", 7, quarto1);
+		quarto1.setNumeroPessoas(2);
 		contrato2 = new Contrato(hospede2, "2314-5455-3198-1094", 12, quarto2);
+		quarto2.setNumeroPessoas(3);
 		
 		Babysitter babysitter1 = new Babysitter(false, 5);
 		AluguelCarro aluguel1 = new AluguelCarro(new CarroExecutivo(false, true));
 		contrato1.adicionaAdicionais(babysitter1);
 		contrato2.adicionaAdicionais(aluguel1);
+		
+		luxoSimples = new LuxoSimples(0, NAO_TEM_CAMA_EXTRA, 0);
+		presidencial = new Presidencial(0, 0);
+		executivoSimples = new ExecutivoSimples(0, NAO_TEM_CAMA_EXTRA, 0);
+		luxoDuplo = new LuxoDuplo(0, NAO_TEM_CAMA_EXTRA, 0);
+		executivoDuplo = new ExecutivoDuplo(0, NAO_TEM_CAMA_EXTRA, 0);
+		luxoTriplo = new LuxoTriplo(0, 0);
+		executivoTriplo = new ExecutivoTriplo(0, 0);
 	}
 	
 	@Test
 	public void testaCriarContratos() throws Exception {
 		try {
-			quartoDeTestes = new LuxoTriplo(3);
+			quartoDeTestes = luxoSimples;
 			new Contrato(null, "666-666-666-6666", 15, quartoDeTestes);
 			Assert.fail("Deve falhar, o contrato não pode aceitar um hóspede nulo.");
 		} catch (Exception e) {
 			Assert.assertEquals("As informações sobre o quarto ou hóspede estão incorretas.", e.getMessage());
 		}
-		
+
 		try {
 			
 		} catch (Exception e) {

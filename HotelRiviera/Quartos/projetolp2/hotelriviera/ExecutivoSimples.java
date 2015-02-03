@@ -5,6 +5,7 @@ public class ExecutivoSimples extends Executivo {
 	
 	public ExecutivoSimples(int numeroDePessoas, boolean camaExtra, int codigoQuarto) throws Exception {
 		super(numeroDePessoas, camaExtra, VALOR_DIARIA_EXSIMPLES, codigoQuarto);
+		tipoQuarto = "EXECUTIVO_SIMPLES";
 	}
 	
 	@Override

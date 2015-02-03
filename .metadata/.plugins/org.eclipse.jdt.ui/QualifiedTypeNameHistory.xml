@@ -5,14 +5,15 @@
 <fullyQualifiedTypeName name="projetolp2.hotelriviera.Contrato"/>
 <fullyQualifiedTypeName name="projetolp2.hotelriviera.Quarto"/>
 <fullyQualifiedTypeName name="projetolp2.hotelriviera.Luxo"/>
-<fullyQualifiedTypeName name="projetolp2.hotelriviera.LuxoDuplo"/>
-<fullyQualifiedTypeName name="projetolp2.hotelriviera.ExecutivoDuplo"/>
 <fullyQualifiedTypeName name="projetolp2.hotelriviera.LuxoTriplo"/>
 <fullyQualifiedTypeName name="projetolp2.hotelriviera.ExecutivoTriplo"/>
-<fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="projetolp2.hotelriviera.ExecutivoSimples"/>
+<fullyQualifiedTypeName name="projetolp2.hotelriviera.ExecutivoDuplo"/>
 <fullyQualifiedTypeName name="projetolp2.hotelriviera.ListaQuartosHotel"/>
-<fullyQualifiedTypeName name="projetolp2.hotelriviera.Presidencial"/>
 <fullyQualifiedTypeName name="projetolp2.hotelriviera.LuxoSimples"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="projetolp2.hotelriviera.Presidencial"/>
+<fullyQualifiedTypeName name="projetolp2.hotelriviera.ExecutivoSimples"/>
+<fullyQualifiedTypeName name="projetolp2.hotelriviera.LuxoDuplo"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
 </qualifiedTypeNameHistroy>

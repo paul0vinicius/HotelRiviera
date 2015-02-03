@@ -5,6 +5,7 @@ public class LuxoDuplo extends Luxo {
 	
 	public LuxoDuplo(int numeroDePessoas, boolean camaExtra, int codigoQuarto) throws Exception {
 		super(numeroDePessoas, camaExtra, VALOR_DIARIA_LDUPLO, codigoQuarto);
+		tipoQuarto = "LUXO_DUPLO";
 	}
 	
 	@Override

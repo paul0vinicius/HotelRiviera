@@ -35,9 +35,9 @@ public class CasoDeUso2 {
 	private Hospede hospede2;
 	private final boolean NAO_TEM_CAMA_EXTRA = false;
 	private final boolean TEM_CAMA_EXTRA = true;
-	private ListaQuartosHotel listaQuartos;
 	private Quarto quarto1;
 	private Quarto quarto2;
+	private static ListaQuartosHotel listaQuartos;
 	
 	@Before
 	public void CriarContratos() throws Exception{
@@ -54,24 +54,44 @@ public class CasoDeUso2 {
 										new GregorianCalendar(1990, 02, 28));
 		
 		listaQuartos = new ListaQuartosHotel();
-		quarto1 = new Presidencial(2, 555);
-		quarto2 = new LuxoSimples(2, false, 5);
+		quarto1 = listaQuartos.getQuarto(11);
+		quarto2 = listaQuartos.getQuarto(1);
 		
 		contrato1 = new Contrato(hospede1, "2314-4313-3123-1234", 7, quarto1);
+		quarto1.setNumeroPessoas(2);
 		contrato2 = new Contrato(hospede2, "2314-5455-3198-1094", 12, quarto2);
+		quarto2.setNumeroPessoas(3);
 	}
 	
 	@Test
 	public void testarQuartos () throws Exception {
-		Assert.assertEquals(85, listaQuartos.consultaQuartosDisponiveis().size());
-		try {
-			
-		} catch (Exception e) {
-			
-		}
+		Quarto luxoSimples = new LuxoSimples(0, NAO_TEM_CAMA_EXTRA, 0);
+		Quarto presidencial = new Presidencial(0, 0);
+		Quarto executivoSimples = new ExecutivoSimples(0, NAO_TEM_CAMA_EXTRA, 0);
+		Quarto luxoDuplo = new LuxoDuplo(0, NAO_TEM_CAMA_EXTRA, 0);
+		Quarto executivoDuplo = new ExecutivoDuplo(0, NAO_TEM_CAMA_EXTRA, 0);
+		Quarto luxoTriplo = new LuxoTriplo(0, 0);
+		Quarto executivoTriplo = new ExecutivoTriplo(0, 0);
 		
-		contrato1 = new Contrato(hospede1, "2314-4313-3123-1234", 7, quarto1);
-		contrato2 = new Contrato(hospede2, "2314-5455-3198-1094", 12, quarto2);
+		Assert.assertEquals(85, listaQuartos.getQuartosDisponiveis().size());
+		Assert.assertEquals(5, listaQuartos.getQuartosDisponiveis(presidencial).size());
+		Assert.assertEquals(5, listaQuartos.getQuartosDisponiveis(luxoSimples).size());
+		Assert.assertEquals(5, listaQuartos.getQuartosDisponiveis(executivoSimples).size());
+		Assert.assertEquals(15, listaQuartos.getQuartosDisponiveis(luxoDuplo).size());
+		Assert.assertEquals(15, listaQuartos.getQuartosDisponiveis(executivoDuplo).size());
+		Assert.assertEquals(20, listaQuartos.getQuartosDisponiveis(executivoTriplo).size());
+		Assert.assertEquals(20, listaQuartos.getQuartosDisponiveis(luxoTriplo).size());
+		
+		listaQuartos.reservaQuarto(2, 1);
+		Assert.assertEquals(84, listaQuartos.getQuartosDisponiveis().size());
+		
+		try {
+			listaQuartos.reservaQuarto(5, 2);
+			Assert.fail("O número de pessoas em um quarto não pode exceder 4.");
+		} catch (Exception e) {
+			Assert.assertEquals("A quantidade de pessoas no quarto não pode exceder o limite"
+					+ " estabelecido de 4 pessoas.", e.getMessage());
+		}
 	}
 	
 	@Test

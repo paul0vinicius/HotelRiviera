@@ -6,6 +6,7 @@ public class Presidencial extends Quarto {
 	
 	public Presidencial(int numeroDePessoas, int codigoQuarto) throws Exception {
 		super(numeroDePessoas, LIMITE_PESSOAS_QUARTO_PRESIDENCIAL, VALOR_DIARIA, codigoQuarto);
+		tipoQuarto = "PRESIDENCIAL";
 	}
 	
 	@Override
