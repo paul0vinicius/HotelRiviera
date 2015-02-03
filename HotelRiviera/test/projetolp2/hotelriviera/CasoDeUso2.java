@@ -31,23 +31,44 @@ public class CasoDeUso2 {
 
 	private Contrato contrato1;
 	private Contrato contrato2;
+	private Hospede hospede1;
+	private Hospede hospede2;
+	private final boolean NAO_TEM_CAMA_EXTRA = false;
+	private final boolean TEM_CAMA_EXTRA = true;
+	private ListaQuartosHotel listaQuartos;
+	private Quarto quarto1;
+	private Quarto quarto2;
 	
 	@Before
 	public void CriarContratos() throws Exception{
-		Hospede hospede1 = new Hospede ("Jorge Ferreira Amaral",
+		hospede1 = new Hospede ("Jorge Ferreira Amaral",
 										"Av. Campinas, 567, Tambau, Joao Pessoa - PB",
 										"234.674.897-45",
 										"(83) 8546-5435",
 										new GregorianCalendar(1990, 01, 22));
 		
-		Hospede hospede2 = new Hospede ("Caio ALima Albuqerque",
-										"Rua Florencia, 134, Boa Viagem, Reife - PE",
+		hospede2 = new Hospede ("Caio ALima Albuqerque",
+										"Rua Florencia, 134, Boa Viagem, Recife - PE",
 										"675.976.453-76",
 										"(82) 3546-5876",
 										new GregorianCalendar(1990, 02, 28));
 		
-		Quarto quarto1 = new LuxoSimples(3);
-		Quarto quarto2 = new Presidencial(4);
+		listaQuartos = new ListaQuartosHotel();
+		quarto1 = new Presidencial(2, 555);
+		quarto2 = new LuxoSimples(2, false, 5);
+		
+		contrato1 = new Contrato(hospede1, "2314-4313-3123-1234", 7, quarto1);
+		contrato2 = new Contrato(hospede2, "2314-5455-3198-1094", 12, quarto2);
+	}
+	
+	@Test
+	public void testarQuartos () throws Exception {
+		Assert.assertEquals(85, listaQuartos.consultaQuartosDisponiveis().size());
+		try {
+			
+		} catch (Exception e) {
+			
+		}
 		
 		contrato1 = new Contrato(hospede1, "2314-4313-3123-1234", 7, quarto1);
 		contrato2 = new Contrato(hospede2, "2314-5455-3198-1094", 12, quarto2);
@@ -57,11 +78,11 @@ public class CasoDeUso2 {
 	public void TestarAluguel() {
 		AluguelCarro aluguel1 = new AluguelCarro(new CarroExecutivo(false, true));
 		contrato1.adicionaAdicionais(aluguel1);
-		Assert.assertEquals(contrato1.getAdicionais().get(0).getCobranca(), 160.00, 0.01);
+		Assert.assertEquals(contrato1.getAdicionais().get(0).getValorServico(), 160.00, 0.01);
 		
 		AluguelCarro aluguel2 = new AluguelCarro(new CarroLuxo(true, false));
 		contrato2.adicionaAdicionais(aluguel2);
-		Assert.assertEquals(contrato2.getAdicionais().get(0).getCobranca(), 250.00, 0.01);
+		Assert.assertEquals(contrato2.getAdicionais().get(0).getValorServico(), 250.00, 0.01);
 	}
 	
 	@Test
@@ -81,11 +102,11 @@ public class CasoDeUso2 {
 		
 		Babysitter babysitter1 = new Babysitter(false, 5);
 		contrato1.adicionaAdicionais(babysitter1);
-		Assert.assertEquals(contrato1.getAdicionais().get(0).getCobranca(), 125.00, 0.01);
+		Assert.assertEquals(contrato1.getAdicionais().get(0).getValorServico(), 125.00, 0.01);
 		
 		Babysitter babysitter2 = new Babysitter(true, 5);
 		contrato2.adicionaAdicionais(babysitter2);
-		Assert.assertEquals(contrato2.getAdicionais().get(0).getCobranca(), 250.00, 0.01);
+		Assert.assertEquals(contrato2.getAdicionais().get(0).getValorServico(), 250.00, 0.01);
 	}
 	
 	@Test
@@ -94,14 +115,14 @@ public class CasoDeUso2 {
 		refeicoes1.acrescentaRefeicao(64.70);
 		refeicoes1.acrescentaRefeicao(32.80);
 		contrato1.adicionaAdicionais(refeicoes1);
-		Assert.assertEquals(contrato1.getAdicionais().get(0).getCobranca(), 97.50, 0.01);
+		Assert.assertEquals(contrato1.getAdicionais().get(0).getValorServico(), 97.50, 0.01);
 		
 		Refeicoes refeicoes2 = new Refeicoes();
 		refeicoes2.acrescentaRefeicao(90.50);
 		refeicoes2.acrescentaRefeicao(12.80);
 		refeicoes2.acrescentaRefeicao(25.30);
 		contrato2.adicionaAdicionais(refeicoes2);
-		Assert.assertEquals(contrato2.getAdicionais().get(0).getCobranca(), 128.60, 0.01);
+		Assert.assertEquals(contrato2.getAdicionais().get(0).getValorServico(), 128.60, 0.01);
 	}
 	
 

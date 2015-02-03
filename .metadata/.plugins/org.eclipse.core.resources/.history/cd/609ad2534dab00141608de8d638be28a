@@ -1,0 +1,62 @@
+package projetolp2.hotelriviera;
+
+import java.util.ArrayList;
+
+public class ListaQuartosHotel {
+	private ArrayList<Quarto> quartosHotel;
+	
+	public ListaQuartosHotel() throws Exception {
+		quartosHotel = new ArrayList<Quarto>();
+		int codPresidencial = 1; 
+		int codLuxo = 100;
+		int codExecutivo = 200;
+		
+		for (int i = 0; i < 20; i++) {
+			if (i < 5) {
+				quartosHotel.add(new Presidencial(0, codPresidencial));
+				quartosHotel.add(new LuxoSimples(0, false, codLuxo));
+				quartosHotel.add(new ExecutivoSimples(0, false, codExecutivo));
+			}
+			
+			codLuxo++;
+			codExecutivo++;
+			if (i < 15) {
+				quartosHotel.add(new LuxoDuplo(0, false, codLuxo));
+				quartosHotel.add(new ExecutivoDuplo(0, false, codExecutivo));
+			}
+			
+			codLuxo++;
+			codExecutivo++;
+			if (i < 20) {
+				quartosHotel.add(new LuxoTriplo(0, codLuxo));
+				quartosHotel.add(new ExecutivoTriplo(0, codExecutivo));
+			}
+			codPresidencial++;
+		}
+	}
+	
+	public ArrayList<Quarto> consultaQuartosDisponiveis () {
+		ArrayList<Quarto> quartosDisponiveis = new ArrayList<Quarto>();
+		for (Quarto a: quartosHotel) {
+			if (a.getQuartoOcupado() == false) {
+				quartosDisponiveis.add(a);
+				System.out.println(a);
+			}
+		}
+		return quartosDisponiveis;
+	}
+	
+	//public boolean reservaQuarto () {
+		
+	//}
+	
+//	public ArrayList<Quarto> consultaQuarto (Quarto quarto) {
+//		if (quarto instanceof Executivo) {
+//			if (quarto instanceof ExecutivoSimples) {
+//				ExecutivoSimples executivoSimples = (ExecutivoSimples) quarto;
+//			}
+//		}
+//		else if (quarto instanceof Executivo)
+//	}
+	
+}

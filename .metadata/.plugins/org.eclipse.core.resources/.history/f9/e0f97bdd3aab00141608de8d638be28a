@@ -1,0 +1,31 @@
+package projetolp2.hotelriviera;
+
+import java.util.ArrayList;
+
+public class ListaQuartosHotel {
+	private ArrayList<Quarto> quartosHotel;
+	
+	public ListaQuartosHotel() throws Exception {
+		quartosHotel = new ArrayList<Quarto>();
+		for (int i = 0; i < 20; i++) {
+			if (i < 5) {
+				quartosHotel.add(new Presidencial(0));
+				quartosHotel.add(new LuxoSimples(0));
+				quartosHotel.add(new ExecutivoSimples(0));
+			}
+			if (i < 15) {
+				quartosHotel.add(new LuxoDuplo(0));
+				quartosHotel.add(new ExecutivoDuplo(0));
+			}
+			if (i < 20) {
+				quartosHotel.add(new LuxoTriplo(0));
+				quartosHotel.add(new ExecutivoTriplo(0));
+			}
+		}
+	}
+	
+	public ArrayList<Quarto> consultaQuartosDisponiveis () {
+		return quartosHotel;
+	}
+	
+}

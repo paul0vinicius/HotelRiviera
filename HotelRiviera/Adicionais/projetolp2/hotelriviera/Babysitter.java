@@ -21,14 +21,9 @@ public class Babysitter implements Adicional {
 	public double getValorServico() {
 		return getPrecoServico();
 	}
-
-	@Override
-	public double getCobranca() {
-		return getPrecoServico();
-	}
 	
 	@Override
 	public String toString() {
-		return " - Babysitter - \nValor por hora: " + precoServico + "\nValor total de serviço: " + getCobranca();
+		return " - Babysitter - \nValor por hora: " + precoServico + "\nValor total de serviço: " + getValorServico();
 	}
 }

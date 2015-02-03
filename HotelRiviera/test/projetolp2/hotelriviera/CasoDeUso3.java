@@ -31,7 +31,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class CasoDeUso3 {
-
+	
+	private Quarto quartoDeTestes;
 	private Contrato contrato1;
 	private Contrato contrato2;
 	
@@ -63,7 +64,19 @@ public class CasoDeUso3 {
 	
 	@Test
 	public void testaCriarContratos() throws Exception {
+		try {
+			quartoDeTestes = new LuxoTriplo(3);
+			new Contrato(null, "666-666-666-6666", 15, quartoDeTestes);
+			Assert.fail("Deve falhar, o contrato não pode aceitar um hóspede nulo.");
+		} catch (Exception e) {
+			Assert.assertEquals("As informações sobre o quarto ou hóspede estão incorretas.", e.getMessage());
+		}
 		
+		try {
+			
+		} catch (Exception e) {
+			
+		}
 	}
 	
 	

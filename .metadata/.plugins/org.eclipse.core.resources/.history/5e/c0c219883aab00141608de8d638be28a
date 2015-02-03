@@ -1,0 +1,16 @@
+package projetolp2.hotelriviera;
+
+import java.util.ArrayList;
+
+public class ListaQuartosHotel {
+	private ArrayList<Quarto> quartosHotel;
+	
+	public ListaQuartosHotel() throws Exception {
+		quartosHotel = new ArrayList<Quarto>();
+		for (int i = 0; i < 5; i++) {
+			quartosHotel.add(new Presidencial(0));
+			quartosHotel.add(new LuxoSimples(0));
+		}
+	}
+	
+}

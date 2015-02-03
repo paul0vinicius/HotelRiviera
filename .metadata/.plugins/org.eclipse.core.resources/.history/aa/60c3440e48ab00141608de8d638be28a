@@ -1,0 +1,46 @@
+package projetolp2.hotelriviera;
+
+public class Quarto implements ServicosHotel {
+	private int numeroPessoas;
+	private double valorDiaria;
+	private boolean quartoOcupado = false;
+	
+	public Quarto (int numeroDePessoas, int limitePessoasQuarto, double diaria) throws Exception {
+		checaExcecoes(numeroDePessoas, limitePessoasQuarto);
+		this.numeroPessoas = numeroDePessoas;
+		this.valorDiaria = diaria;
+	}
+
+	public double getValorDiaria() {
+		return valorDiaria;
+	}
+
+	public void setValorDiaria(double valorDiaria) {
+		this.valorDiaria = valorDiaria;
+	}
+
+	public int getNumeroPessoas() {
+		return numeroPessoas;
+	}
+	
+	public boolean getQuartoOcupado() {
+		return quartoOcupado;
+	}
+
+	public void getQuartoOcupado(boolean statusQuarto) {
+		this.quartoOcupado = statusQuarto;
+	}
+
+	private void checaExcecoes (int pessoas, int limitePessoasQuarto) throws Exception {
+		if (!(pessoas >= 0 && pessoas <= limitePessoasQuarto)) {
+			throw new Exception("A quantidade de pessoas no quarto não pode exceder o limite"
+					+ " estabelecido de " + limitePessoasQuarto + " pessoas.");
+		}
+	}
+
+	@Override
+	public double getValorServico() {
+		return getValorDiaria();
+	}
+
+}

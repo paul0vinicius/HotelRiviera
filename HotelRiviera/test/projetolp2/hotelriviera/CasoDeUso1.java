@@ -16,10 +16,12 @@ import java.util.*;
 
 public class CasoDeUso1 {
 	
-	public Contrato contrato1;
-	public Contrato contrato2;
-	GregorianCalendar dataHospede1 = new GregorianCalendar(1990, 01, 22);
-	GregorianCalendar dataHospede2 = new GregorianCalendar(1990, 02, 28);
+	private Contrato contrato1;
+	private Contrato contrato2;
+	private GregorianCalendar dataHospede1 = new GregorianCalendar(1990, 01, 22);
+	private GregorianCalendar dataHospede2 = new GregorianCalendar(1990, 02, 28);
+	private final boolean NAO_TEM_CAMA_EXTRA = false;
+	private final boolean TEM_CAMA_EXTRA = true;
 	
 	
 	@Before
@@ -36,8 +38,8 @@ public class CasoDeUso1 {
 										"(82) 3546-5876",
 										new GregorianCalendar(1990, 02, 28));
 		
-		Quarto quarto1 = new LuxoSimples(2);
-		Quarto quarto2 = new Presidencial (3);
+		Quarto quarto1 = new LuxoSimples(2, NAO_TEM_CAMA_EXTRA);
+		Quarto quarto2 = new Presidencial(3);
 		
 		contrato1 = new Contrato(hospede1, "2314-4313-3123-1234", 7, quarto1);
 		contrato2 = new Contrato(hospede2, "2314-5455-3198-1094", 12, quarto2);
@@ -73,6 +75,7 @@ public class CasoDeUso1 {
 		Assert.assertEquals(quarto2.getValorDiaria(), 1200, 1);
 	}
 	
+	@Test
 	public void testaAtualizarInformacoes() throws Exception {
 		Hospede novohospede = new Hospede ( "Novolino da Silva e Costa",
 											"Av. Nova Morada, 001, Geisel, Joao Pessoa - PB",
@@ -92,11 +95,12 @@ public class CasoDeUso1 {
 		contrato1.setNumeroDias(9);
 		Assert.assertEquals(contrato1.getNumeroDias(), 9);
 		
-		contrato1.setQuarto(new ExecutivoDuplo(2));
+		contrato1.setQuarto(new ExecutivoDuplo(2, TEM_CAMA_EXTRA, 0));
 		Assert.assertEquals(contrato1.getQuarto().getNumeroPessoas(), 2, 1); 
 		Assert.assertEquals(contrato1.getQuarto().getValorDiaria(), 385, 1);
 	}
 	
+	@Test
 	public void testaCriacaoDeContratos(){
 		Assert.assertFalse(contrato1.equals(null));
 		Assert.assertFalse(contrato2.equals(null));

@@ -7,12 +7,7 @@ public class Refeicoes implements Adicional {
 	public double getValorServico() {
 		return getValorTotalConsumido();
 	}
-
-	@Override
-	public double getCobranca() {
-		return getValorTotalConsumido();
-	}
-
+	
 	public double getValorTotalConsumido() {
 		return valorTotalConsumido;
 	}
