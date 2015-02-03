@@ -57,8 +57,8 @@ public class CasoDeUso3 {
 										new GregorianCalendar(1990, 02, 28));
 		
 		listaQuartos = new ListaQuartosHotel();
-		Quarto quarto1 = listaQuartos.getQuarto(11);
-		Quarto quarto2 = listaQuartos.getQuarto(1);
+		quarto1 = listaQuartos.getQuarto(11);
+		quarto2 = listaQuartos.getQuarto(1);
 		
 		contrato1 = new Contrato(hospede1, "2314-4313-3123-1234", 7, quarto1);
 		quarto1.setNumeroPessoas(2);

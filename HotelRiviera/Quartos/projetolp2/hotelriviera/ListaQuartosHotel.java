@@ -103,35 +103,7 @@ public class ListaQuartosHotel {
 	}
 	
 	private String checaTipoQuarto (Quarto quarto) {
-		String tipoQuarto = "";
-		if (quarto instanceof Executivo) {
-			if (quarto instanceof ExecutivoSimples) {
-				tipoQuarto = "EXECUTIVO_SIMPLES";
-			}
-			else if (quarto instanceof ExecutivoDuplo) {
-				tipoQuarto = "EXECUTIVO_DUPLO";
-			}
-			else if (quarto instanceof ExecutivoTriplo) {
-				tipoQuarto = "EXECUTIVO_TRIPLO";
-			}
-		}
-		else if (quarto instanceof Luxo) {
-			if (quarto instanceof LuxoSimples) {
-				tipoQuarto = "LUXO_SIMPLES";
-			}
-			else if (quarto instanceof LuxoDuplo) {
-				tipoQuarto = "LUXO_DUPLO";
-			}
-			else if (quarto instanceof LuxoTriplo) {
-				tipoQuarto = "LUXO_TRIPLO";
-			}
-		}
-		else {
-			if (quarto instanceof Presidencial) {
-				tipoQuarto = "PRESIDENCIAL";
-			}
-		}
-		return tipoQuarto;
+		return quarto.getTipoQuarto();
 	}
 	
 }
