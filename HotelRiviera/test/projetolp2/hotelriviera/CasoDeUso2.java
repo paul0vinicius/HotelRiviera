@@ -109,15 +109,15 @@ public class CasoDeUso2 {
 	public void TestarBabysitter() throws Exception {
 		try {
 			new Babysitter(false, 15);
-			Assert.fail("O número de horas não pode exceder 12.");
+			Assert.fail("O numero de horas nao pode exceder 12.");
 		} catch (Exception e) {
-			Assert.assertEquals("O número de horas não pode ser negativo ou acima de 12.", e.getMessage());
+			Assert.assertEquals("O numero de horas nao pode ser acima de 12.", e.getMessage());
 		}
 		try {
 			new Babysitter(false, -1);
-			Assert.fail("O número de horas não pode ser negativo.");
-		} catch (Exception e) {
-			Assert.assertEquals("O número de horas não pode ser negativo ou acima de 12.", e.getMessage());
+			Assert.fail("O numero de horas nao pode ser negativo.");
+		} catch (NumeroNegativoException e) {
+			Assert.assertEquals("O numero de horas nao pode ser negativo.", e.getMessage());
 		}
 		
 		Babysitter babysitter1 = new Babysitter(false, 5);

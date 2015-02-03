@@ -104,7 +104,10 @@ public class CasoDeUso3 {
 			Assert.assertEquals("O numero de dias nao pode ser negativo.",e.getMessage());
 		}
 	}
-	
+	@Test
+	public void testaCheckout(){
+		
+	}
 	
 }
 
