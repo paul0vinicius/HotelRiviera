@@ -33,6 +33,8 @@ import org.junit.Test;
 public class CasoDeUso3 {
 	
 	private Quarto quartoDeTestes;
+	private Hospede hospede1;
+	private Hospede hospede2;
 	private Contrato contrato1;
 	private Contrato contrato2;
 	private Quarto quarto1;
@@ -44,13 +46,13 @@ public class CasoDeUso3 {
 	
 	@Before
 	public void CriarContratos() throws Exception{
-		Hospede hospede1 = new Hospede ("Jorge Ferreira Amaral",
+		hospede1 = new Hospede ("Jorge Ferreira Amaral",
 										"Av. Campinas, 567, Tambau, Joao Pessoa - PB",
 										"234.674.897-45",
 										"(83) 8546-5435",
 										new GregorianCalendar(1990, 01, 22));
 		
-		Hospede hospede2 = new Hospede ("Caio Lima Albuqerque",
+		hospede2 = new Hospede ("Caio Lima Albuqerque",
 										"Rua Florencia, 134, Boa Viagem, Reife - PE",
 										"675.976.453-76",
 										"(82) 3546-5876",
@@ -90,9 +92,10 @@ public class CasoDeUso3 {
 		}
 
 		try {
-			
-		} catch (Exception e) {
-			
+			quartoDeTestes = presidencial;
+			new Contrato(hospede1,null,16,quartoDeTestes);
+		} catch (ObjetoInvalidoException e) {
+			Assert.assertEquals("O objeto passado eh nulo. ", e.getMessage());
 		}
 	}
 	

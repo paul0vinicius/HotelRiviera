@@ -10,10 +10,10 @@ public class Contrato {
 	private ArrayList<Adicional> adicionais;
 	
 	public Contrato (Hospede hospede, String numeroCartao, int numeroDias, Quarto quarto) throws Exception, NullPointerException, StringVaziaNullException {
-		if (hospede == null || quarto == null) {
+		if (hospede == null || quarto == null || numeroCartao == null) {
 			throw new ObjetoInvalidoException("O objeto passado eh nulo. ");
 		}
-		if (numeroCartao == "" || numeroCartao == null) {
+		if (numeroCartao == "") {
 			throw new StringVaziaException("O numero do cartao passado eh invalido");
 		}
 		if (numeroDias < 1) {
